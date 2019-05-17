@@ -7,23 +7,24 @@ from colorama import Fore,Back
 import sys
 import random #for shuffling
 
-if '-h' in sys.argv:
+#help option
+if '-h' in sys.argv or '--help' in sys.argv:
 	print('\n\nA command line quizlet thingy')
 	print('-n # for selecting set from sets.txt\n\n')
+	print('-s or --shuffle for shuffling the order of the cards')
 	sys.exit(0)
 
 
 #opening conf file      quizlet-cli.conf
 options=open('quizlet-cli.conf','r').read().split('\n')
 
-print(len(options))
 i=0
 while i < len(options):
 	if '#' in options[i]:
 		del options[i]
 		i=i-1
 	i=i+1
-print(options)
+
 
 DEFAULT_SIDE=int(options[0])
 NEXT=options[1]
@@ -34,7 +35,6 @@ QUIT=options[5]
 SETFILE=options[6]
 
 
-shuffle = False
 #oponing set
 
 sets=open(SETFILE,'r').read().split()
@@ -45,6 +45,14 @@ else:
 	setToGet=sets[0]
 if '-s' in sys.argv or '--shuffle' in sys.argv:
 	shuffle=True
+else:
+	shuffle=False
+if '--default-side' in sys.argv:
+	p=sys.argv.index('--default-size')
+	DEFAULT_SIDE = int(sys.argv[p+1])
+elif '-df' in sys.argv:
+	p=sys.argv.index('-df')
+	DEFAULT_SIDE = int(sys.argv[p+1])
 
 print("Getting Set...")
 title,cards=getInfo(setToGet)
@@ -67,8 +75,8 @@ def drawWindow(text,title):
 	width=int(width)
 	height=int(height)
 	clear()
-	tText=' '*int(width/2-len(title)/2)+'========'+title+'======='+' '*(int(width/2-len(title)/2)-int(16+len(title)/5))   # fix this mess
-	sText=' '*int(width/2-len('QUIZLET')/2)+'========'+'QUIZLET'+'======='+' '*(int(width/2-len('QUIZLET')/2)-14) # website text
+	tText=' '*int(width/2-len(title)/2)+'========'+title+'======='+' '*(int(width/2-len(title)/2)-int(16+len(title)/5)+12)   # fix this mess
+	sText=' '*int(width/2-len('QUIZLET')/2)+'========'+'QUIZLET'+'======='+' '*(int(width/2-len('QUIZLET')/2)-15) # website text
 
 	print(Back.BLUE)
 	print('='*width)
@@ -81,7 +89,7 @@ def drawWindow(text,title):
 	print(' '*int(width/2-len(text)/2)+text)
 
 	print('\n'*int(height/3))
-
+	print('('+str(cI+1)+'/'+str(len(cards))+')')
 
 cI=0 #card index
 cS=DEFAULT_SIDE #card side

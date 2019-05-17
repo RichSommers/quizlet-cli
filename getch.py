@@ -1,11 +1,14 @@
+##TAKEN FROM http://code.activestate.com/recipes/579095-getch-like-unbuffered-character-reading-from-stdin/
+
+
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the
 screen."""
     def __init__(self):
         try:
+            self.impl = _GetchWindows()
+        except ImportError:
             self.impl = _GetchUnix()
-        except:
-            print('something is messed up. And it is your fault')
 
     def __call__(self): return self.impl()
 
@@ -42,3 +45,25 @@ class _GetchUnix:
 
         return ch
 
+
+class _GetchWindows:
+    """Fetch a character using the Microsoft Visual C Runtime."""
+    def __init__(self):
+        import msvcrt
+
+    def __call__(self):
+        import msvcrt
+        import time
+
+        # Delay timeout to match UNIX behaviour
+        time.sleep(1)
+
+        # Check if there is a character waiting, otherwise this would block
+        if msvcrt.kbhit():
+            return msvcrt.getch()
+
+        else:
+            return
+
+
+getch = _Getch()
