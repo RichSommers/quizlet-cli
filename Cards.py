@@ -5,7 +5,7 @@ from getch import _Getch
 from time import sleep
 from colorama import Fore,Back
 import sys
-
+import random #for shuffling
 
 if '-h' in sys.argv:
 	print('\n\nA command line quizlet thingy')
@@ -19,9 +19,7 @@ options=open('quizlet-cli.conf','r').read().split('\n')
 print(len(options))
 i=0
 while i < len(options):
-	print(i)
 	if '#' in options[i]:
-		print('found')
 		del options[i]
 		i=i-1
 	i=i+1
@@ -36,6 +34,7 @@ QUIT=options[5]
 SETFILE=options[6]
 
 
+shuffle = False
 #oponing set
 
 sets=open(SETFILE,'r').read().split()
@@ -44,13 +43,16 @@ if '-n' in sys.argv:
 	setToGet=sets[int(sys.argv[p+1])]
 else:
 	setToGet=sets[0]
-
+if '-s' in sys.argv or '--shuffle' in sys.argv:
+	shuffle=True
 
 print("Getting Set...")
 title,cards=getInfo(setToGet)
-
 print("Got set")
 
+
+if shuffle:
+	random.shuffle(cards)
 
 cards.append(('LAST CARD','LAST CARD'))
 
