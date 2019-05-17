@@ -1,3 +1,4 @@
+
 from getTermsDefs import getInfo
 import os
 from getch import _Getch
@@ -5,20 +6,44 @@ from time import sleep
 from colorama import Fore,Back
 import sys
 
+
+if '-h' in sys.argv:
+	print('\n\nA command line quizlet thingy')
+	print('-n # for selecting set from sets.txt\n\n')
+	sys.exit(0)
+
+
+#opening conf file      quizlet-cli.conf
+options=open('quizlet-cli.conf','r').read().split('\n')
+
+print(len(options))
+i=0
+while i < len(options):
+	print(i)
+	if '#' in options[i]:
+		print('found')
+		del options[i]
+		i=i-1
+	i=i+1
+print(options)
+
+DEFAULT_SIDE=int(options[0])
+NEXT=options[1]
+LAST=options[2]
+FLIPUP=options[3]
+FLIPDOWN=options[4]
+QUIT=options[5]
+SETFILE=options[6]
+
+
 #oponing set
 
 sets=open(SETFILE,'r').read().split()
-
-
 if '-n' in sys.argv:
 	p=sys.argv.index('-n')
 	setToGet=sets[int(sys.argv[p+1])]
 else:
 	setToGet=sets[0]
-
-if '-h' in sys.argv:
-	print('A command line quizlet )
-
 
 
 print("Getting Set...")
