@@ -1,7 +1,7 @@
 
-from getTermsDefs import getInfo
+from src.getTermsDefs import getInfo
 import os
-from getch import _Getch
+from src.getch import _Getch
 from time import sleep
 from colorama import Fore,Back
 import sys
