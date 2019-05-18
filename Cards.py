@@ -40,7 +40,7 @@ SETFILE=options[6]
 sets=open(SETFILE,'r').read().split()
 if '-n' in sys.argv:
 	p=sys.argv.index('-n')
-	setToGet=sets[int(sys.argv[p+1])]
+	setToGet=sets[int(sys.argv[p+1])-1]
 else:
 	setToGet=sets[0]
 if '-s' in sys.argv or '--shuffle' in sys.argv:
@@ -48,7 +48,7 @@ if '-s' in sys.argv or '--shuffle' in sys.argv:
 else:
 	shuffle=False
 if '--default-side' in sys.argv:
-	p=sys.argv.index('--default-size')
+	p=sys.argv.index('--default-side')
 	DEFAULT_SIDE = int(sys.argv[p+1])
 elif '-df' in sys.argv:
 	p=sys.argv.index('-df')

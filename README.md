@@ -13,7 +13,7 @@ Works on Linux and maybe windows(untested).
  Will display limited help options and exit.
  
   <code> python3 Cards.py -n X </code>
-  Where X is the number of the line of the set from sets.txt. 
+  Where X is the number of the line of the set from sets.txt starting from 1. 
    <code> python3 Cards.py -s </code>
   Will run the flashcards but shuffled. 
   
