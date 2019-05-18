@@ -21,8 +21,14 @@ Works on Linux and maybe windows(untested).
   
    <code> python3 Cards.py -h -n 1 </code>
 
+Quizlet Search Function:
+
+<code>python3 Search.py</code>
+brings  you to a search bar. Type the name of the set you want and hit Enter(q to exit). Then select which set to save.
+You will be told what number to use for <code>python3 Cards.py -n </code>
+
 Important: 
-	This seems to brak on at least one set about so french may break it
+	This seems to break on at least one set about so french may break it
 
 Configuration:
 
@@ -30,7 +36,11 @@ keys are stored in quizlet-cli.conf
 
 default
 next  l
+
 previous j
+
 flip up i
+
 flip down k   flip up and flip down do the same thing for now
+
 quit q    Because of the way it gets characters for flipping ctrl-c or ctrl-z will not work once the set is loaded
