@@ -59,6 +59,17 @@ title,cards=getInfo(setToGet)
 print("Got set")
 
 
+'''
+def fix(text):   #can be done better if done in getInfo
+	return text.replace('&quot;','"')  #maybe \"
+for i in title:
+	for j in i:
+		j=fix(j)
+for i in cards:
+	for j in i:
+		j=fix(j)
+
+'''
 if shuffle:
 	random.shuffle(cards)
 

@@ -4,6 +4,9 @@ import re
 
 def find(r,t): # regex,text
 	return re.findall(r,t)
+
+def fix(text):
+	return text.replace('&quot;','"')
 def getInfo(link):
 	text=get(link)
 	#title finding
@@ -17,7 +20,7 @@ def getInfo(link):
 
 	organized=[]
 	for i in range(0,len(TsAndDs),2):
-		organized.append((TsAndDs[i],TsAndDs[i+1]))
+		organized.append((fix(TsAndDs[i]),fix(TsAndDs[i+1])))
 	return title, organized
 
 if __name__=='__main__':

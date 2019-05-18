@@ -55,7 +55,7 @@ while c!='q':
 	if sN!=0:
 		currentSets=open('sets.txt','r+')
 		amtOfSets=len(currentSets.read().split('\n'))
-		currentSets.write(ls[sN]) #write next link to file maybe only works because of weird/intended r+ behaviour
+		currentSets.write(ls[sN]+'\n') #write next link to file maybe only works because of weird/intended r+ behaviour
 		print('Link added as link #'+str(amtOfSets))
 		wait=input('Press any key when ready')
 	clear()

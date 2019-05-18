@@ -21,7 +21,8 @@ Works on Linux and maybe windows(untested).
   
    <code> python3 Cards.py -h -n 1 </code>
 
-
+Important: 
+	This seems to brak on at least one set about so french may break it
 
 Configuration:
 
